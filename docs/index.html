@@ -1,19 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ANGELCORE — Pre‑release</title>
-    <meta name="description" content="ANGELCORE — private CS2 suite. Pre‑release." />
-    <meta name="theme-color" content="#0b0e13" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="/favicon.ico" />
-    <script type="module" crossorigin src="./assets/index-CZUmvfcY.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BkgUfXf4.css">
+    <!-- НЕ НУЖЕН <base>. Пути для GH Pages задаём в vite.config.ts через base:'/pravo/'. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- просим браузер чаще проверять новую версию index.html -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Правительство — Памятка (SKY)</title>
+
+    <!-- (необязательно) preconnect под ваши шрифты/ресурсы -->
+    <!-- <link rel="preconnect" href="https://rsms.me" crossorigin> -->
+    <script type="module" crossorigin src="/pravo/assets/index-CkI-Uld4.js"></script>
+    <link rel="modulepreload" crossorigin href="/pravo/assets/react-vendor-DTkXckhQ.js">
+    <link rel="modulepreload" crossorigin href="/pravo/assets/icons-DET5c9ig.js">
+    <link rel="stylesheet" crossorigin href="/pravo/assets/index-D6DD_mV6.css">
   </head>
-  <body>
+
+  <body class="bg-zinc-50 text-zinc-900">
     <div id="root"></div>
+
+    <!-- убиваем любой старый service worker и его кэши (чтоб не прилипала старая версия) -->
+    <script>
+      (function killSW() {
+        try {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+          }
+          if ('caches' in window) {
+            caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+          }
+        } catch {}
+      })();
+    </script>
+
+    <!-- dev-скрипт; при билде Vite сам заменит на /pravo/assets/index-*.js и подключит CSS -->
   </body>
 </html>
