@@ -1,0 +1,1 @@
+const o=["latest","hot","new","following","questions"],e="forum:default_feed";function n(t){return typeof t=="string"&&o.includes(t)}function r(){try{const t=localStorage.getItem(e);if(n(t))return t}catch{}return"latest"}function s(t){if(n(t))try{localStorage.setItem(e,t)}catch{}}export{r as g,n as i,s};
